@@ -1,18 +1,10 @@
-module File_reader
-  def read
-    string_file = IO.read(@file)
-    array_lines = string_file.split("\n")
-    array_lines.map! { |elem| elem.split(",") }
-    array_nums = array_lines.flatten.map {|elem| elem.to_i }
-    array_sliced = array_nums.each_slice(2).to_a 
-
-    return array_sliced
-  end
-end
+require_relative './order_list_module.rb' 
+require_relative './file_reader_module.rb'
 
 class Arranger
 
   include File_reader
+  include Order_list
 
   def initialize file
     @file = file
@@ -55,38 +47,6 @@ class Arranger
       @final_result.sort! do |x,y| 
         y.size <=> x.size 
       end
-    end
-
-    def order_data
-      sort_by_heigth()
-      @data_a = sort_by_same_height()
-    end
-
-    def sort_by_heigth
-      @data_a.sort! do |x,y| 
-        x[0] <=> y[0] 
-      end
-    end
-
-    def sort_by_same_height 
-      array_sort = []
-      @data_a.each_index do|i| 
-
-        if i < (@data_a.size-1)
-          if ( (@data_a[i][0] == @data_a[i+1][0]) && (@data_a[i][1] < @data_a[i+1][1]) )
-            array_sort << @data_a[i]
-          elsif ( (@data_a[i][0] == @data_a[i+1][0]) && (@data_a[i][1] > @data_a[i+1][1]) )
-            array_sort << @data_a[i+1]
-            @data_a[i+1] = @data_a[i]
-          else
-            array_sort << @data_a[i]
-          end
-        elsif (i == @data_a.size-1)
-          array_sort << @data_a[i]
-        end
-         
-      end
-      array_sort
     end
 
     def find_all current_index
