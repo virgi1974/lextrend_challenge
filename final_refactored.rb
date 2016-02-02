@@ -22,8 +22,7 @@ class Arranger
   private
 
     def find_solution
-      @data_a.each do |mini_a|
-        index = @data_a.index(mini_a) 
+      @data_a.each_with_index do |mini_a,index|
         find_all(index)
         @final_result.last.unshift(mini_a)  
         @each_match = []
