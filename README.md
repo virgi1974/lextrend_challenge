@@ -67,7 +67,10 @@ En el método get_best_match() considero solo el primer mejor resultado de los d
 Si se quisieran dar todas las combinaciones posibles en ese punto habría que implementar alguna variante.
 
 No se implementa una gran muestra para el fichero de datos data.txt, ya que creo que se usará otro por parte del examinador. Tan solo hay que cambiar el nombre del fichero con el que iniciativa la instancia de la clase Arranger.
+
 -------------------
+
 REFACTORIZACION
+
 El ejercicio se ha refactorizado sacando a dos módulos independientes las funcionalidades de lectura de fichero y de ordenación de la lista.
 También se han refactorizado varios métodos intentando que se cumpla el principio de responsabilidad única.
